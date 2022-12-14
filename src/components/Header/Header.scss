@@ -1,0 +1,23 @@
+.link,
+.link_active {
+    // flex-shrink: 0;
+
+    text-decoration: none;
+    font-family: 'Ailerons';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+    // line-height: 24px;
+    /* identical to box height, or 150% */
+
+
+    color: #fff;
+
+    &:hover {
+        color: #68DFD3;
+    }
+}
+
+.link_active {
+    color: #68DFD3;
+}
