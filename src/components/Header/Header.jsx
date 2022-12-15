@@ -20,7 +20,7 @@ const Header = () => {
                 width: '100%',
                 height: '50px',
                 backgroundColor: 'transparent',
-                zIndex: 1
+                zIndex: 100000
             }}
         >
             <Stack
@@ -43,23 +43,23 @@ const Header = () => {
                     </Stack>
                 </Grid>
                 <Grid container>
-                    <Grid item md={3}>
-                        <NavLink to="/" className={(navData) => (navData.isActive ? 'link_active' : 'link')}>
-                            Download CV
+                    <Grid item md={2}>
+                        <NavLink className="link_active link">
+                            Home
                         </NavLink>
                     </Grid>
-                    <Grid item md={3}>
-                        <NavLink to="/about" className={(navData) => (navData.isActive ? 'link_active' : 'link')}>
+                    <Grid item md={2}>
+                        <NavLink className="link">
                             About Me
                         </NavLink>
                     </Grid>
-                    <Grid item md={3}>
-                        <NavLink to="/projects" className={(navData) => (navData.isActive ? 'link_active' : 'link')}>
+                    <Grid item md={2}>
+                        <NavLink className="link">
                             Projects
                         </NavLink>
                     </Grid>
-                    <Grid item md={3}>
-                        <NavLink to="/contact" className={(navData) => (navData.isActive ? 'link_active' : 'link')}>
+                    <Grid item md={2}>
+                        <NavLink className="link">
                             Contact
                         </NavLink>
                     </Grid>

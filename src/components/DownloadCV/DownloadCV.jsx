@@ -1,26 +1,15 @@
 import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Typed from "react-typed";
-import { Box, Paper, Stack, Typography, Grid, Button } from '@mui/material';
 
+import bird1 from '../../assets/imgs/bird1.png';
+import bird2 from '../../assets/imgs/bird2.png';
+import forest from '../../assets/imgs/forest.png';
+import rocks from '../../assets/imgs/rocks.png';
+import water from '../../assets/imgs/water.png';
 import cv from '../../assets/imgs/luffy.jpg';
 
 import './DownloadCV.scss';
 
-const Header = () => {
-    const Item = styled(Paper)(({ theme }) => ({
-        // backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        // ...theme.typography.body2,
-        textAlign: 'center',
-        color: 'black',
-        height: '100%',
-        fontSize: '4rem',
-        fontWeight: '900',
-        boxShadow: 'none',
-        // border: '1px solid black',
-        fontFamily: 'Ailerons'
-    }));
-
+const DownloadCV = () => {
     const Download = () => {
         var a = document.createElement("a");
         a.href = cv;
@@ -28,99 +17,53 @@ const Header = () => {
         a.click();
     }
 
+    const interval = () => {
+        setInterval(() => {
+            let t = document.getElementById("text");
+            let b1 = document.getElementById("bird1");
+            let b2 = document.getElementById("bird2");
+            let bt = document.getElementById("btn");
+            let rc = document.getElementById("rocks");
+            let fr = document.getElementById("forest");
+
+            window.addEventListener('scroll', () => {
+                let value = window.scrollY;
+
+                t.style.top = 20 + value * -0.5 + "px";
+                b1.style.top = value * -1.5 + "px";
+                b1.style.left = value * 2 + "px";
+                b2.style.top = value * -1.5 + "px";
+                b2.style.left = value * -5 + "px";
+                bt.style.marginTop = value * 1.5 + "px";
+                rc.style.top = value * -0.12 + "px";
+                fr.style.top = value * 0.25 + "px";
+            });
+        });
+    };
+
+    React.useEffect(() => {
+        interval();
+    }, []);
+
+    React.useEffect(() => {
+        return () => {
+            clearInterval(interval());
+        };
+    }, []);
+
     return (
-        <Box sx={{
-            flexGrow: 1,
-            height: '100vh'
-        }}>
-            <div className='blob two'></div>
-            <div className='blob three'></div>
-            <Grid
-                container
-                spacing={2}
-                sx={{
-                    width: '80vw',
-                    m: '15vh auto',
-                    height: '70vh',
-                }}
-            >
-                <Grid item xs={12} md={6}>
-                    <Stack
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        spacing={4}
-                        height="100%"
-                    >
-                        <Item>
-                            <Typed
-                                strings={["Hi, I'm Tân"]}
-                                typeSpeed={150}
-                                backSpeed={100}
-                                loop
-                            />
-                        </Item>
-                        <Item>
-                            <Typography variant="h6" component="div" sx={{ fontFamily: 'Ailerons', fontSize: '2.25rem' }}>
-                                Welcome to my website!
-                            </Typography>
-                            <Typography variant="h6" component="div" sx={{ fontFamily: 'Ailerons', fontSize: '2.25rem' }}>
-                                I'm a front-end developer
-                            </Typography>
-                        </Item>
-                        <Item>
-                            <Stack
-                                direction="row"
-                                justifyContent="center"
-                                alignItems="center"
-                                spacing={2}
-                            >
-                                <Button
-                                    sx={{
-                                        background: '#59C2C0',
-                                        transform: 'skewX(-15deg)',
-                                        transition: '1s',
-                                        boxShadow: '6px 6px 0 black',
-                                        '&:hover': {
-                                            backgroundColor: '#20B2AA',
-                                            transition: '0.5s',
-                                            boxShadow: '10px 10px 0 #FBC638'
-                                        }
-                                    }}
-                                    variant="contained"
-                                    onClick={Download}
-                                >
-                                    Download cv (VN)
-                                </Button>
-                                <Button
-                                    sx={{
-                                        background: '#59C2C0',
-                                        transform: 'skewX(-15deg)',
-                                        transition: '1s',
-                                        boxShadow: '6px 6px 0 black',
-                                        '&:hover': {
-                                            backgroundColor: '#20B2AA',
-                                            transition: '0.5s',
-                                            boxShadow: '10px 10px 0 #FBC638'
-                                        }
-                                    }}
-                                    variant="contained"
-                                    onClick={Download}
-                                >
-                                    Download cv (EN)
-                                </Button>
-                            </Stack>
-                        </Item>
-                    </Stack>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                    <Item>
-                        <div className="blob avatar"></div>
-                    </Item>
-                </Grid>
-            </Grid>
-        </Box>
+        <section>
+            <h2 id="text" className="text">
+                <span>Welcome to my</span><br></br>Website
+            </h2>
+            <img src={bird1} id="bird1"></img>
+            <img src={bird2} id="bird2"></img>
+            <img src={forest} id="forest"></img>
+            <button id="btn" onClick={Download}>Download CV</button>
+            <img src={rocks} id="rocks"></img>
+            <img src={water} id="water"></img>
+        </section>
     );
 }
 
-export default Header;
+export default DownloadCV;

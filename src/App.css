@@ -8,6 +8,6 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: "Ailerons";
-  overflow: hidden;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
