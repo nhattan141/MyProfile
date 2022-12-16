@@ -2,8 +2,8 @@ import * as React from 'react';
 import Header from './Header/Header';
 import DownloadCV from './DownloadCV/DownloadCV';
 import AboutMe from './AboutMe/AboutMe';
-
-import { Outlet } from 'react-router-dom';
+import Projects from './Projects/Projects';
+import ToTop from './ToTop/ToTop';
 
 const MainComponent = () => {
     return (
@@ -11,6 +11,8 @@ const MainComponent = () => {
             <Header />
             <DownloadCV />
             <AboutMe />
+            <Projects />
+            <ToTop />
         </>
     )
 }

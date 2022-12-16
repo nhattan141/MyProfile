@@ -8,6 +8,12 @@ import logo from '../../assets/imgs/Tlogo.png';
 import './Header.scss';
 
 const Header = () => {
+    const handleCroll = (position) => {
+        window.scrollTo({
+            top: position,
+            behavior: 'smooth'
+        });
+    }
 
     return (
         <Box
@@ -44,22 +50,22 @@ const Header = () => {
                 </Grid>
                 <Grid container>
                     <Grid item md={2}>
-                        <NavLink className="link_active link">
+                        <NavLink onClick={() => { handleCroll(0) }} className="link_active link">
                             Home
                         </NavLink>
                     </Grid>
                     <Grid item md={2}>
-                        <NavLink className="link">
+                        <NavLink onClick={() => { handleCroll(600) }} className="link">
                             About Me
                         </NavLink>
                     </Grid>
                     <Grid item md={2}>
-                        <NavLink className="link">
+                        <NavLink onClick={() => { handleCroll(1200) }} className="link">
                             Projects
                         </NavLink>
                     </Grid>
                     <Grid item md={2}>
-                        <NavLink className="link">
+                        <NavLink onClick={() => { handleCroll(3000) }} className="link">
                             Contact
                         </NavLink>
                     </Grid>

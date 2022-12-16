@@ -7,12 +7,12 @@ import Typed from 'react-typed';
 
 import handleFloat from '../../utils/Bubble';
 
-import './AboutMe.scss';
+import './Projects.scss';
 
-const AboutMe = () => {
+const Projects = () => {
     const interval = () => {
         setInterval(() => {
-            handleFloat(".aboutme-container");
+            handleFloat(".Projects-container");
         }, 400);
     };
 
@@ -26,15 +26,8 @@ const AboutMe = () => {
         };
     }, []);
 
-    const scrollToProjects = () => {
-        window.scrollTo({
-            top: 1200,
-            behavior: 'smooth'
-        });
-    }
-
     return (
-        <div className="aboutme-container">
+        <div className="Projects-container">
             <span className="bubble"></span>
             <Grid
                 container
@@ -65,7 +58,6 @@ const AboutMe = () => {
                         justifyContent="space-around"
                         alignItems="flex-start"
                         spacing={2}
-                        sx={{ height: '100%' }}
                     >
                         <Typography
                             variant="h1"
@@ -95,11 +87,7 @@ const AboutMe = () => {
                             <br />
                             I learned about ReactJS. My goal is to become a professional front-end developer in the near future, and beyond to become a full-stack developer.
                         </Typography>
-                        <Button
-                            variant="contained"
-                            endIcon={<KeyboardDoubleArrowDownIcon />}
-                            onClick={scrollToProjects}
-                        >
+                        <Button variant="contained" endIcon={<KeyboardDoubleArrowDownIcon />}>
                             See my project
                         </Button>
                     </Stack>
@@ -109,4 +97,4 @@ const AboutMe = () => {
     );
 }
 
-export default AboutMe;
+export default Projects;

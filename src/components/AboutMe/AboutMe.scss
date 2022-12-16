@@ -1,17 +1,89 @@
 .aboutme-container {
     position: relative;
-    padding: 100px;
     background-color: #094b65;
     height: 100vh;
+    overflow: hidden;
 
-    h2 {
-        font-size: 3.5em;
-        color: #fff;
-        margin-bottom: 10px;
+    .bubble {
+        width: 80px;
+        background: #094b65;
+        aspect-ratio: 1;
+        // box-shadow: inset 3px 3px .5rem rgba(0, 0, 0, .5),
+        //     inset -1px -1px .5rem rgba(255, 255, 255, .3);
+        border-radius: 50%;
+        position: absolute;
+        top: 100%;
+        opacity: 0.8;
+        animation: toTop linear;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #094b65;
+            border-radius: 50%;
+            box-shadow: -6px 8px 4px #094b65, -10px 15px 8px #094b65,
+                inset -1.5px 1.5px 2.5px #094b65, inset 3px 6px 10px #094b65,
+                inset 8px -8px 12px white, inset 20px -20px 22px #a8ceff
+        }
     }
 
-    p {
-        font-size: 1em;
-        color: #fff;
+    .blob {
+        overflow: hidden;
+        width: 16rem;
+        height: 16rem;
+        border-radius: 42% 56% 72% 20% / 42% 42% 56% 48%;
+        background: #094b65 url('../../assets/imgs/luffy.jpg');
+        background-size: cover;
+        background-position: center;
+        animation: morph 3.75s linear infinite;
+    }
+
+    button {
+        padding: 8px 30px;
+        color: #094b65;
+        background-color: #fff;
+        font-size: 1.2em;
+        font-weight: 500;
+        letter-spacing: 2px;
+        border-radius: 40px;
+
+        transition: 1s;
+        box-shadow: 6px 6px 0 black;
+
+        &:hover {
+            background-color: #20B2AA;
+            transition: 0.5s;
+            box-shadow: 10px 10px 0 #FBC638
+        }
+    }
+}
+
+@keyframes toTop {
+    from {
+        top: 80%;
+        rotate: 70deg;
+    }
+
+    to {
+        top: 5%;
+        rotate: 360deg;
+    }
+}
+
+@keyframes morph {
+
+    0%,
+    100% {
+        border-radius: 42% 56% 72% 20% / 42% 42% 56% 48%;
+    }
+
+    33% {
+        border-radius: 72% 28% 48% 48% / 28% 28% 72% 72%;
+    }
+
+    66% {
+        border-radius: 100% 56% 56% 100% / 100% 100% 56% 56%;
     }
 }

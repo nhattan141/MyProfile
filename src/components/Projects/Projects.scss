@@ -1,0 +1,31 @@
+.Projects-container {
+    position: relative;
+    background-color: #094b65;
+    height: 100vh;
+    overflow: hidden;
+
+    .bubble {
+        width: 80px;
+        background: #094b65;
+        aspect-ratio: 1;
+        // box-shadow: inset 3px 3px .5rem rgba(0, 0, 0, .5),
+        //     inset -1px -1px .5rem rgba(255, 255, 255, .3);
+        border-radius: 50%;
+        position: absolute;
+        top: 100%;
+        opacity: 0.8;
+        animation: toTop linear;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: #094b65;
+            border-radius: 50%;
+            box-shadow: -6px 8px 4px #094b65, -10px 15px 8px #094b65,
+                inset -1.5px 1.5px 2.5px #094b65, inset 3px 6px 10px #094b65,
+                inset 8px -8px 12px white, inset 20px -20px 22px #a8ceff
+        }
+    }
+}
