@@ -1,18 +1,18 @@
 import * as React from 'react';
 import Header from './Header/Header';
-import DownloadCV from './DownloadCV/DownloadCV';
+import Home from './Home/Home';
 import AboutMe from './AboutMe/AboutMe';
 import Projects from './Projects/Projects';
-import ToTop from './ToTop/ToTop';
+import Contact from './Contact/Contact';
 
 const MainComponent = () => {
     return (
         <>
             <Header />
-            <DownloadCV />
+            <Home />
             <AboutMe />
             <Projects />
-            <ToTop />
+            <Contact />
         </>
     )
 }

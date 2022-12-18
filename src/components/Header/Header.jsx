@@ -3,29 +3,23 @@ import { Box, Stack, Typography, Grid, Avatar } from '@mui/material';
 
 import { NavLink } from 'react-router-dom';
 
-import logo from '../../assets/imgs/Tlogo.png';
+import logo from '../../assets/imgs/logoBlackPink.png';
 
 import './Header.scss';
 
 const Header = () => {
-    const handleCroll = (position) => {
-        window.scrollTo({
-            top: position,
-            behavior: 'smooth'
-        });
-    }
-
     return (
         <Box
             sx={{
                 flexGrow: 1,
-                position: 'absolute',
+                position: 'fixed',
                 top: 0,
                 left: 0,
                 boxShadow: 'none',
                 width: '100%',
                 height: '50px',
-                backgroundColor: 'transparent',
+                backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                color: 'rgb(224, 13, 189)',
                 zIndex: 100000
             }}
         >
@@ -35,7 +29,7 @@ const Header = () => {
                 spacing={2}
                 height="100%"
             >
-                <Grid container>
+                <Grid container sx={{ justifyContent: 'flex-start' }}>
                     <Stack
                         direction="row"
                         justifyContent="flex-start"
@@ -48,26 +42,18 @@ const Header = () => {
                         </Typography>
                     </Stack>
                 </Grid>
-                <Grid container>
-                    <Grid item md={2}>
-                        <NavLink onClick={() => { handleCroll(0) }} className="link_active link">
-                            Home
-                        </NavLink>
+                <Grid container sx={{ justifyContent: 'flex-end' }}>
+                    <Grid item md={3}>
+                        <a href='#home' className='link'>Home</a>
                     </Grid>
-                    <Grid item md={2}>
-                        <NavLink onClick={() => { handleCroll(600) }} className="link">
-                            About Me
-                        </NavLink>
+                    <Grid item md={3}>
+                        <a href='#about' className='link'>About me</a>
                     </Grid>
-                    <Grid item md={2}>
-                        <NavLink onClick={() => { handleCroll(1200) }} className="link">
-                            Projects
-                        </NavLink>
+                    <Grid item md={3}>
+                        <a href='#projects' className='link'>Projects</a>
                     </Grid>
-                    <Grid item md={2}>
-                        <NavLink onClick={() => { handleCroll(3000) }} className="link">
-                            Contact
-                        </NavLink>
+                    <Grid item md={3}>
+                        <a href='#contact' className='link'>Contact</a>
                     </Grid>
                 </Grid>
             </Stack>

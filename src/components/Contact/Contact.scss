@@ -1,24 +1,24 @@
 :root {
-    --position: 0%;
-    --positionMid: 90%;
+    --positionContact: 0%;
+    --positionMidpositionContact: 90%;
 }
 
-.AboutContainer {
+.ContactContainer {
     position: relative;
     background-color: black;
-    height: 100vh;
+    height: 60vh;
     width: 100%;
 
     &::before {
         content: "";
         position: absolute;
         width: 100vw;
-        height: 150px;
-        top: -150px;
+        height: 100px;
+        top: -100px;
         left: 0;
         z-index: 10;
         background-color: black;
-        clip-path: polygon(80% var(--positionMid), 100% var(--position), 100% 100%, 0 100%, 0 var(--position));
+        clip-path: polygon(80% var(--positionMidpositionContact), 100% 0%, 100% 100%, 0 100%, 0 0%);
         position: absolute;
     }
 

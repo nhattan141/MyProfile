@@ -5,18 +5,19 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 
 import Typed from 'react-typed';
 
-import './AboutMe.scss';
+import './Contact.scss';
 
-const AboutMe = () => {
+const Contact = () => {
     const interval = () => {
         setInterval(() => {
-            let aboutcontainer = document.getElementById("about");
+            let aboutcontainer = document.getElementById("contact");
 
             window.addEventListener('scroll', () => {
-                let value = window.scrollY;
-                let position = 90 + value * -0.5;
+                let value = Math.ceil(window.scrollY);
+                let position = Math.min(Math.abs((1223 - value)), 90);
 
-                aboutcontainer.style.setProperty("--positionMid", `${position}%`);
+                console.log(value);
+                aboutcontainer.style.setProperty("--positionMidpositionContact", `${position}%`);
             });
         }, 1000);
     };
@@ -33,8 +34,8 @@ const AboutMe = () => {
     }
 
     return (
-        <div className="AboutContainer" id="about">
-            <Grid
+        <div className="ContactContainer" id="contact">
+            {/* <Grid
                 container
                 spacing={2}
                 sx={{
@@ -102,9 +103,9 @@ const AboutMe = () => {
                         </Button>
                     </Stack>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </div >
     );
 }
 
-export default AboutMe;
+export default Contact;

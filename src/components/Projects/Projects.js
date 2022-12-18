@@ -5,31 +5,29 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 
 import Typed from 'react-typed';
 
-import handleFloat from '../../utils/Bubble';
-
 import './Projects.scss';
 
 const Projects = () => {
     const interval = () => {
         setInterval(() => {
-            handleFloat(".Projects-container");
-        }, 400);
+            let projectscontainer = document.getElementById("projects");
+
+            window.addEventListener('scroll', () => {
+                let value = Math.ceil(window.scrollY);
+                let positionBot = Math.min(Math.abs((602 - value)), 90);
+
+                projectscontainer.style.setProperty("--positionMidProjects", `${positionBot}%`);
+            });
+        }, 1000);
     };
 
     React.useEffect(() => {
         interval();
     }, []);
 
-    React.useEffect(() => {
-        return () => {
-            clearInterval(interval());
-        };
-    }, []);
-
     return (
-        <div className="Projects-container">
-            <span className="bubble"></span>
-            <Grid
+        <div className="ProjectsContainer" id="projects">
+            {/* <Grid
                 container
                 spacing={2}
                 sx={{
@@ -92,7 +90,7 @@ const Projects = () => {
                         </Button>
                     </Stack>
                 </Grid>
-            </Grid>
+            </Grid> */}
         </div >
     );
 }
