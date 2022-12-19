@@ -75,23 +75,18 @@ const AboutMe = () => {
                 container
                 spacing={2}
                 sx={{
-                    position: 'absolute',
-                    width: '80%',
-                    height: '80%',
-                    margin: '0 auto',
-                    marginLeft: '10%',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 100
+                    flexGrow: 1,
+                    width: '80vw',
+                    minHeight: '80vh',
+                    margin: '5vh 5vw',
                 }}
             >
                 <Grid item md={4} xs={12}>
-
                     <motion.div
                         style={{
                             display: 'flex',
                             width: '100%',
-                            minHeight: '100%',
+                            height: '100%',
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
@@ -111,7 +106,7 @@ const AboutMe = () => {
                         style={{
                             display: 'flex',
                             width: '100%',
-                            minHeight: '100%',
+                            height: '100%',
                             justifyContent: 'center',
                             alignItems: 'center'
                         }}
@@ -119,7 +114,7 @@ const AboutMe = () => {
                     >
                         <Stack
                             direction="column"
-                            justifyContent="space-around"
+                            justifyContent="space-between"
                             alignItems="flex-start"
                             spacing={2}
                             sx={{ height: '100%' }}

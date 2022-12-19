@@ -10,6 +10,13 @@ import cv from '../../assets/imgs/logoBlackPink.png';
 import './Header.scss';
 
 const Header = () => {
+    const scrollToTop = () => {
+        window.scroll({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+
     return (
         <Box
             sx={{
@@ -37,6 +44,7 @@ const Header = () => {
                         justifyContent="flex-start"
                         alignItems="center"
                         spacing={2}
+                        onClick={scrollToTop}
                     >
                         <Avatar src={logo} sx={{ ml: 5, }} variant="square"></Avatar>
                         <Typography variant="h6" component="div" sx={{ fontFamily: 'Ailerons', fontSize: '2.25rem' }}>

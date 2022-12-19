@@ -9,6 +9,9 @@
     min-height: 100vh;
     width: 100%;
 
+    display: flex;
+    align-items: center;
+
     &::before {
         content: "";
         position: absolute;
@@ -45,7 +48,6 @@
         .color {
             position: absolute;
             filter: blur(100px);
-            z-index: 1;
 
             &:nth-child(1) {
                 top: 10px;

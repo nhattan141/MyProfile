@@ -3,20 +3,43 @@ import * as React from 'react';
 import { Grid, Stack, Typography, Button } from '@mui/material';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 
-import Typed from 'react-typed';
+import L from 'leaflet';
+import {
+    MapContainer, TileLayer, Marker, Popup
+} from 'react-leaflet'
+import 'leaflet/dist/leaflet.css';
+
+import icon from '../../assets/imgs/leaf-green.png';
+import iconShadow from '../../assets/imgs/leaf-shadow.png';
 
 import './Contact.scss';
 
 const Contact = () => {
+    const position = [10.713247881437333, 106.61931037902832];
+    const customIcon = L.icon({
+        iconUrl: icon,
+        shadowUrl: iconShadow,
+        iconSize: [38, 95],
+        iconAnchor: [22, 94],
+        shadowAnchor: [4, 62],
+        popupAnchor: [12, -90]
+    })
+
+    L.Marker.prototype.options.icon = customIcon;
+
     const interval = () => {
         setInterval(() => {
             let aboutcontainer = document.getElementById("contact");
+            let vh = window.innerHeight;
 
             window.addEventListener('scroll', () => {
                 let value = Math.ceil(window.scrollY);
-                let position = Math.min(Math.abs((1223 - value)), 90);
+                let position = Math.min(Math.abs((1332 - value)), 90);
 
-                aboutcontainer.style.setProperty("--positionMidpositionContact", `${position}%`);
+                console.log(value);
+                console.log(position);
+
+                aboutcontainer.style.setProperty("--positionMidContact", `${position}%`);
             });
         }, 1000);
     };
@@ -34,30 +57,33 @@ const Contact = () => {
 
     return (
         <div className="ContactContainer" id="contact">
-            {/* <Grid
+            <Grid
                 container
                 spacing={2}
                 sx={{
-                    position: 'absolute',
-                    width: '80%',
-                    height: '80%',
-                    margin: '0 auto',
-                    marginLeft: '10%',
-                    top: '50%',
-                    transform: 'translateY(-50%)',
-                    zIndex: 100
+                    flexGrow: 1,
+                    width: '80vw',
+                    minHeight: '80vh',
+                    margin: '5vh 5vw',
                 }}
             >
-                <Grid item md={4} xs={12} sx={{ border: '1px solid black' }}>
-                    <Stack direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        sx={{ height: '100%', width: '100%' }}
-                    >
-                        <div className="blob"></div>
-                    </Stack>
+                <Grid item md={8} xs={12} sx={{ minHeight: '80vh' }}>
+                    <div className='map'>
+                        <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
+                            <TileLayer
+                                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                                url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+                            />
+                            <Marker position={position}>
+                                <Popup>
+                                    99 An Dương Vương <br />
+                                    Ward 16, District 8, Ho Chi Minh City
+                                </Popup>
+                            </Marker>
+                        </MapContainer>,
+                    </div>
                 </Grid>
-                <Grid item md={8} xs={12} sx={{ border: '1px solid black' }}>
+                <Grid item md={4} xs={12} sx={{ border: '1px solid black' }}>
                     <Stack
                         direction="column"
                         justifyContent="space-around"
@@ -70,12 +96,6 @@ const Contact = () => {
                             component="h2"
                             sx={{ fontFamily: '"Rancho", cursive', color: 'white' }}
                         >
-                            <Typed
-                                strings={['HI, I AM TÂN']}
-                                typeSpeed={40}
-                                backSpeed={50}
-                                loop
-                            />
                         </Typography>
                         <Typography
                             variant="h4"
@@ -102,7 +122,7 @@ const Contact = () => {
                         </Button>
                     </Stack>
                 </Grid>
-            </Grid> */}
+            </Grid>
         </div >
     );
 }

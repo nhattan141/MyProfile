@@ -1,55 +1,37 @@
 :root {
     --positionContact: 0%;
-    --positionMidpositionContact: 90%;
+    --positionMidContact: 90%;
 }
 
 .ContactContainer {
     position: relative;
     background-color: black;
-    height: 60vh;
+    min-height: 100vh;
     width: 100%;
+
+    display: flex;
+    align-items: center;
 
     &::before {
         content: "";
         position: absolute;
         width: 100vw;
         height: 100px;
-        top: -99px;
+        top: -98px;
         left: 0;
         z-index: 10;
         background-color: black;
-        clip-path: polygon(80% var(--positionMidpositionContact), 100% 0%, 100% 100%, 0 100%, 0 0%);
+        clip-path: polygon(80% var(--positionMidContact), 100% 0%, 100% 100%, 0 100%, 0 0%);
         position: absolute;
     }
 
-    .blob {
-        overflow: hidden;
-        width: 16rem;
-        height: 16rem;
-        border-radius: 42% 56% 72% 20% / 42% 42% 56% 48%;
-        background: black url('../../assets/imgs/luffy.jpg');
-        background-size: cover;
-        background-position: center;
-        animation: morph 3.75s linear infinite;
-    }
+    .map {
+        width: 100%;
+        height: 100%;
 
-    button {
-        padding: 8px 30px;
-        color: black;
-        background-color: #fff;
-        font-size: 1.2em;
-        font-weight: 500;
-        letter-spacing: 2px;
-        border-radius: 40px;
-
-        transition: 1s;
-        box-shadow: 6px 6px 0 rgb(224, 13, 189);
-
-        &:hover {
-            color: #fff;
-            background-color: rgb(224, 13, 189);
-            transition: 0.5s;
-            box-shadow: 10px 10px 0 #FBC638
+        .leaflet-container {
+            width: 100%;
+            height: 100%;
         }
     }
 }
