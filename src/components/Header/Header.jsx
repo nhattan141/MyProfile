@@ -1,9 +1,11 @@
 import * as React from 'react';
-import { Box, Stack, Typography, Grid, Avatar } from '@mui/material';
+import { Box, Stack, Typography, Grid, Avatar, Button } from '@mui/material';
 
 import { NavLink } from 'react-router-dom';
 
 import logo from '../../assets/imgs/logoBlackPink.png';
+
+import cv from '../../assets/imgs/logoBlackPink.png';
 
 import './Header.scss';
 
@@ -17,7 +19,7 @@ const Header = () => {
                 left: 0,
                 boxShadow: 'none',
                 width: '100%',
-                height: '50px',
+                height: '70px',
                 backgroundColor: 'rgba(255, 255, 255, 0.1)',
                 color: 'rgb(224, 13, 189)',
                 zIndex: 100000
@@ -43,17 +45,20 @@ const Header = () => {
                     </Stack>
                 </Grid>
                 <Grid container sx={{ justifyContent: 'flex-end' }}>
-                    <Grid item md={3}>
+                    <Grid item md>
                         <a href='#home' className='link'>Home</a>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item md>
                         <a href='#about' className='link'>About me</a>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item md>
                         <a href='#projects' className='link'>Projects</a>
                     </Grid>
-                    <Grid item md={3}>
+                    <Grid item md>
                         <a href='#contact' className='link'>Contact</a>
+                    </Grid>
+                    <Grid item md>
+                        <a href={cv} className='link btn' download='NhatTanCV.png'>My CV</a>
                     </Grid>
                 </Grid>
             </Stack>

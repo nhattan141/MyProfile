@@ -6,8 +6,40 @@ import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrow
 import Typed from 'react-typed';
 
 import './AboutMe.scss';
+import { motion, useAnimation } from "framer-motion"
+import { useInView } from 'react-intersection-observer';
 
 const AboutMe = () => {
+    const { ref, inView } = useInView({
+        threshold: 0.2
+    });
+    const animation1 = useAnimation();
+    const animation2 = useAnimation();
+
+    React.useEffect(() => {
+        if (inView) {
+            animation1.start({
+                x: 0,
+                transition: {
+                    type: 'spring', duration: 1, bounce: 0.3
+                }
+            })
+            animation2.start({
+                x: 0,
+                transition: {
+                    type: 'spring', duration: 1, bounce: 0.3
+                }
+            })
+        } else {
+            animation1.start({
+                x: '-100vw'
+            })
+            animation2.start({
+                x: '100vw'
+            })
+        }
+    }, [inView])
+
     const interval = () => {
         setInterval(() => {
             let aboutcontainer = document.getElementById("about");
@@ -26,14 +58,19 @@ const AboutMe = () => {
     }, []);
 
     const scrollToProjects = () => {
-        window.scrollTo({
-            top: 1200,
-            behavior: 'smooth'
-        });
+        const link = document.createElement('a');
+        link.href = '#projects';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     return (
-        <div className="AboutContainer" id="about">
+        <div ref={ref} className="AboutContainer" id="about">
+            <section>
+                <div className="color"></div>
+                <div className="color"></div>
+            </section>
             <Grid
                 container
                 spacing={2}
@@ -48,59 +85,82 @@ const AboutMe = () => {
                     zIndex: 100
                 }}
             >
-                <Grid item md={4} xs={12} sx={{ border: '1px solid black' }}>
-                    <Stack direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        sx={{ height: '100%', width: '100%' }}
+                <Grid item md={4} xs={12}>
+
+                    <motion.div
+                        style={{
+                            display: 'flex',
+                            width: '100%',
+                            minHeight: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                        animate={animation1}
                     >
-                        <div className="blob"></div>
-                    </Stack>
+                        <Stack direction="column"
+                            justifyContent="center"
+                            alignItems="center"
+                            sx={{ height: '100%', width: '100%' }}
+                        >
+                            <div className="blob"></div>
+                        </Stack>
+                    </motion.div>
                 </Grid>
-                <Grid item md={8} xs={12} sx={{ border: '1px solid black' }}>
-                    <Stack
-                        direction="column"
-                        justifyContent="space-around"
-                        alignItems="flex-start"
-                        spacing={2}
-                        sx={{ height: '100%' }}
+                <Grid item md={8} xs={12}>
+                    <motion.div
+                        style={{
+                            display: 'flex',
+                            width: '100%',
+                            minHeight: '100%',
+                            justifyContent: 'center',
+                            alignItems: 'center'
+                        }}
+                        animate={animation2}
                     >
-                        <Typography
-                            variant="h1"
-                            component="h2"
-                            sx={{ fontFamily: '"Rancho", cursive', color: 'white' }}
+                        <Stack
+                            direction="column"
+                            justifyContent="space-around"
+                            alignItems="flex-start"
+                            spacing={2}
+                            sx={{ height: '100%' }}
                         >
-                            <Typed
-                                strings={['HI, I AM TÂN']}
-                                typeSpeed={40}
-                                backSpeed={50}
-                                loop
-                            />
-                        </Typography>
-                        <Typography
-                            variant="h4"
-                            component="h2"
-                            sx={{ color: 'white' }}
-                        >
-                            A FRONT-END DEVELOPER
-                        </Typography>
-                        <Typography
-                            variant="h6"
-                            component="p"
-                            sx={{ color: 'white' }}
-                        >
-                            I am a final year student of Sài Gòn University.
-                            <br />
-                            I learned about ReactJS. My goal is to become a professional front-end developer in the near future, and beyond to become a full-stack developer.
-                        </Typography>
-                        <Button
-                            variant="contained"
-                            endIcon={<KeyboardDoubleArrowDownIcon />}
-                            onClick={scrollToProjects}
-                        >
-                            See my project
-                        </Button>
-                    </Stack>
+                            <Typography
+                                variant="h1"
+                                component="h2"
+                                sx={{ fontFamily: '"Rancho", cursive', color: 'white' }}
+                            >
+                                <Typed
+                                    strings={['HI, I AM TÂN']}
+                                    typeSpeed={40}
+                                    backSpeed={50}
+                                    loop
+                                />
+                            </Typography>
+                            <Typography
+                                variant="h4"
+                                component="h2"
+                                sx={{ color: 'white' }}
+                            >
+                                A FRONT-END DEVELOPER
+                            </Typography>
+                            <Typography
+                                variant="h6"
+                                component="p"
+                                sx={{ color: 'white' }}
+                            >
+                                I am a final year student of Sài Gòn University.
+                                <br />
+                                I learned about ReactJS. My goal is to become a professional front-end developer in the near future, and beyond to become a full-stack developer.
+                            </Typography>
+                            <Button
+                                variant="contained"
+                                endIcon={<KeyboardDoubleArrowDownIcon />}
+                                onClick={scrollToProjects}
+                            >
+                                See my project
+                            </Button>
+                        </Stack>
+                    </motion.div>
                 </Grid>
             </Grid>
         </div >

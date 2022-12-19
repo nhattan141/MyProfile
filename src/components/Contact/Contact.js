@@ -16,7 +16,6 @@ const Contact = () => {
                 let value = Math.ceil(window.scrollY);
                 let position = Math.min(Math.abs((1223 - value)), 90);
 
-                console.log(value);
                 aboutcontainer.style.setProperty("--positionMidpositionContact", `${position}%`);
             });
         }, 1000);

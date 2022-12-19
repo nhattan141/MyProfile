@@ -6,7 +6,7 @@
     font-style: normal;
     font-weight: 400;
     font-size: 1.5rem;
-    border-radius: 20px;
+    border-radius: 5px;
     padding: 6px 15px;
     font-family: "Ailerons";
     text-align: center;
@@ -17,4 +17,10 @@
         background-color: black;
         color: #fff;
     }
+}
+
+.btn {
+    color: #fff;
+    border-radius: 5px;
+    background-color: rgb(224, 13, 189);
 }
