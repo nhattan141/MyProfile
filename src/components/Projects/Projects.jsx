@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import './Projects.scss';
-import { motion, transform, useAnimation } from "framer-motion"
+import { motion, useAnimation } from "framer-motion"
 import { useInView } from 'react-intersection-observer';
 
 const Projects = () => {
