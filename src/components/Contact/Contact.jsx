@@ -122,7 +122,7 @@ const Contact = () => {
                     width: '80vw',
                     minHeight: '80vh',
                     margin: '5vh 5vw',
-                    zIndex: '1000'
+                    // zIndex: '1000'
                 }}
             >
                 <Grid item md={8} xs={12} sx={{ height: '80vh' }}>
