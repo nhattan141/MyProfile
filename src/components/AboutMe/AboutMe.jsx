@@ -145,7 +145,7 @@ const AboutMe = () => {
                             >
                                 I am a final year student of Sài Gòn University.
                                 <br />
-                                I learned about ReactJS. My goal is to become a professional front-end developer in the near future, and beyond to become a full-stack developer.
+                                I have studied and worked on a few ReactJS projects. My goal is to become a professional front-end developer in the near future, and beyond to become a full-stack developer.I am not afraid to approach new technologies.
                             </Typography>
                             <Button
                                 variant="contained"

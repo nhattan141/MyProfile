@@ -45,9 +45,11 @@ const Header = () => {
     }
 
     const downloadCv = () => {
+        let linkcv = "https://www.topcv.vn/xem-cv/A1FWBVVSB1hXVANWAAEGUFcDVgdcUFdeAQIBVwe288";
         var a = document.createElement("a");
-        a.href = cv;
-        a.setAttribute("download", "NhatTanCV.jpg");
+        a.href = linkcv;
+        a.target = '_blank';
+        // a.setAttribute("download", "NhatTanCV.jpg");
         a.click();
     }
 

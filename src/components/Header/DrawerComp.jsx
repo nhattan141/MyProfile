@@ -79,7 +79,9 @@ const DrawerComp = ({ open, handleClose }) => {
                     </a>
                 </motion.div>
                 <motion.div animate={animation1}>
-                    <a href={cv} download='NhatTanCV.png' style={{ ['--clr']: "#ECF0F1 " }}>
+                    <a href="https://www.topcv.vn/xem-cv/A1FWBVVSB1hXVANWAAEGUFcDVgdcUFdeAQIBVwe288"
+                        target="_blank"
+                        style={{ ['--clr']: "#ECF0F1 " }}>
                         <span>my cv</span><i></i>
                     </a>
                 </motion.div>

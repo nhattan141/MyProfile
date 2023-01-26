@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import logo from '../../assets/imgs/logoBlackPink.png';
+import avatarcv2 from '../../assets/imgs/avatarcv2.png';
 
 import './Home.scss';
 
@@ -19,7 +19,7 @@ const DownloadCV = () => {
             </section>
             <div className="text"><span>Welcome to my</span><br />Website</div>
             <div className="avatar">
-                {/* <img src={logo}></img> */}
+                {/* <img src={avatarcv2}></img> */}
             </div>
         </div>
     );
