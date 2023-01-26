@@ -87,7 +87,7 @@ const Header = () => {
                                         onClick={scrollToTop}
                                         sx={{ cursor: 'pointer' }}
                                     >
-                                        <Avatar src={logo} sx={{ ml: 5, }} variant="square"></Avatar>
+                                        <Avatar src={logo} sx={{ ml: 2.5, }} variant="square"></Avatar>
                                         <Typography variant="h6" component="div" sx={{ fontFamily: 'Ailerons', fontSize: '2.25rem' }}>
                                             TANPORTFOLIO
                                         </Typography>
