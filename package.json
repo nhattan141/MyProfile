@@ -2,6 +2,7 @@
   "name": "tanprofile",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nhattan141.github.io/MyProfile/",
   "dependencies": {
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
@@ -12,6 +13,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "framer-motion": "^7.6.19",
+    "gh-pages": "^5.0.0",
     "leaflet": "^1.9.3",
     "mapbox-gl": "^2.11.1",
     "react": "^18.2.0",
@@ -30,7 +32,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
