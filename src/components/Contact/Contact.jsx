@@ -1,20 +1,13 @@
 import * as React from 'react';
 
-import { Grid, Stack, Typography, Avatar, IconButton } from '@mui/material';
+import { Grid, Stack, Typography, Button, TextField } from '@mui/material';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import SendIcon from '@mui/icons-material/Send';
 
-import L from 'leaflet';
-import {
-    MapContainer, TileLayer, Marker, Popup
-} from 'react-leaflet'
-import 'leaflet/dist/leaflet.css';
-
-import icon from '../../assets/imgs/leaf-green.png';
-import iconShadow from '../../assets/imgs/leaf-shadow.png';
-import contact from '../../assets/imgs/contactme.png';
+import emailjs from '@emailjs/browser';
 
 import { motion, transform, useAnimation } from "framer-motion"
 import { useInView } from 'react-intersection-observer';
@@ -22,20 +15,43 @@ import { useInView } from 'react-intersection-observer';
 import './Contact.scss';
 
 const Contact = () => {
-    const position = [10.713247881437333, 106.61931037902832];
-    const customIcon = L.icon({
-        iconUrl: icon,
-        shadowUrl: iconShadow,
-        iconSize: [38, 95],
-        iconAnchor: [22, 94],
-        shadowAnchor: [4, 62],
-        popupAnchor: [12, -90]
-    })
+    const [values, setValues] = React.useState({
+        user_name: '',
+        user_email: '',
+        message: ''
+    });
+    const [status, setStatus] = React.useState('NORMAL');
 
-    L.Marker.prototype.options.icon = customIcon;
+    const handleChange = (e) => {
+        setValues(values => ({
+            ...values,
+            [e.target.name]: e.target.value
+        }))
+    };
 
-    const hiddenMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 30px, rgba(0,0,0,1) 30px, rgba(0,0,0,1) 30px)`;
-    const visibleMask = `repeating-linear-gradient(to right, rgba(0,0,0,0) 0px, rgba(0,0,0,0) 0px, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 30px)`;
+    const form = React.useRef();
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+        if (values.user_name === '' || values.user_email === '' || values.message === '') {
+            setStatus('ERROR');
+            return;
+        }
+
+        emailjs.sendForm('service_a3whncs', 'template_ttg86o2', form.current, 'rhAsO6zgXRYuWpkqy')
+            .then((result) => {
+                console.log(result.text);
+                setValues({
+                    user_name: '',
+                    user_email: '',
+                    message: ''
+                });
+                setStatus('SUCCESS');
+            }, (error) => {
+                console.log(error.text);
+                setStatus('ERROR');
+            });
+    };
 
     const { ref, inView } = useInView({
         threshold: 0.2
@@ -46,12 +62,7 @@ const Contact = () => {
     React.useEffect(() => {
         if (inView) {
             animationLeft.start({
-                // x: 0,
-                WebkitMaskImage: visibleMask,
-                maskImage: visibleMask,
-                transition: {
-                    type: 'spring', duration: 1, bounce: 0.3
-                },
+                x: 0
             })
             animationRight.start({
                 transform: 'scale(1)',
@@ -61,8 +72,7 @@ const Contact = () => {
             })
         } else {
             animationLeft.start({
-                // x: '-100vw',
-                WebkitMaskImage: hiddenMask, maskImage: hiddenMask
+                x: '-100vw'
             })
             animationRight.start({
                 transform: 'scale(0)',
@@ -136,18 +146,97 @@ const Contact = () => {
                         }}
                         animate={animationLeft}
                     >
-                        <Avatar
-                            alt="Remy Sharp"
-                            src={contact}
-                            variant="square"
-                            sx={{
-                                height: '100%',
-                                width: '100%',
-                                backgroundPosition: 'center',
-                                backgroundSize: 'cover'
-                            }}
-                        >
-                        </Avatar>
+                        <form ref={form} onSubmit={sendEmail}>
+                            <Typography
+                                variant="h6"
+                                component="p"
+                            >
+                                Send me message
+                            </Typography>
+                            {
+                                status === 'SUCCESS' ?
+                                    <Typography
+                                        // variant="h7"
+                                        component="p"
+                                        sx={{
+                                            backgroundColor: '#32de84',
+                                            color: 'white',
+                                            borderRadius: '5px',
+                                            padding: '5px',
+                                        }}
+                                    >
+                                        * Sent message successfully
+                                    </Typography> :
+                                    status === 'ERROR' ?
+                                        <Typography
+                                            // variant="h7"
+                                            component="p"
+                                            sx={{
+                                                backgroundColor: '#E32636',
+                                                color: 'white',
+                                                borderRadius: '5px',
+                                                padding: '5px',
+                                            }}
+                                        >
+                                            * Missing input
+                                        </Typography> :
+                                        <Typography
+                                            // variant="h7"
+                                            component="p"
+                                            sx={{
+                                                backgroundColor: '#7CB9E8',
+                                                color: 'white',
+                                                borderRadius: '5px',
+                                                padding: '5px',
+                                            }}
+                                        >
+                                            * Please do not leave any fields blank
+                                        </Typography>
+                            }
+                            <TextField
+                                error={status === 'ERROR' ? true : false}
+                                id="outlined-basic"
+                                name="user_name"
+                                value={values.user_name}
+                                onChange={handleChange}
+                                label="Your Name"
+                                variant="outlined"
+                            />
+                            <TextField
+                                error={status === 'ERROR' ? true : false}
+                                id="outlined-basic"
+                                name="user_email"
+                                value={values.user_email}
+                                onChange={handleChange}
+                                label="Your Email"
+                                variant="outlined"
+                            />
+                            <TextField
+                                error={status === 'ERROR' ? true : false}
+                                id="outlined-multiline-static"
+                                label="Message"
+                                name="message"
+                                value={values.message}
+                                onChange={handleChange}
+                                multiline
+                                rows={6}
+                            />
+                            <Button
+                                type='submit'
+                                variant="contained"
+                                endIcon={<SendIcon />}
+                                sx={{
+                                    background: '#000',
+                                    transition: 'all .5s ease-in-out',
+                                    "&:hover": {
+                                        background: 'rgb(63,94,251)',
+                                        background: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);'
+                                    },
+                                }}
+                            >
+                                Send
+                            </Button>
+                        </form>
                     </motion.div>
                 </Grid>
                 <Grid item md={4} xs={12}>
@@ -183,7 +272,9 @@ const Contact = () => {
                                 spacing={2}
                                 color="white"
                             >
-                                <LocalPhoneIcon />
+                                <div className='icon' style={{ background: '#32de84' }}>
+                                    <LocalPhoneIcon />
+                                </div>
                                 <Typography
                                     variant="h6"
                                     component="p"
@@ -198,13 +289,15 @@ const Contact = () => {
                                 spacing={2}
                                 color="white"
                             >
-                                <EmailIcon />
+                                <div className='icon' style={{ background: '#7CB9E8' }}>
+                                    <EmailIcon />
+                                </div>
                                 <Typography
                                     variant="h6"
                                     component="p"
                                     sx={{ color: 'white' }}
                                 >
-                                    trngtn44@gmail.com
+                                    truongmainhattan14@gmail.com
                                 </Typography>
                             </Stack>
                             <Stack
@@ -214,7 +307,9 @@ const Contact = () => {
                                 color="white"
                                 onClick={gotoFacebook}
                             >
-                                <FacebookIcon />
+                                <div className='icon' style={{ background: '#008FFF' }}>
+                                    <FacebookIcon />
+                                </div>
                                 <Typography
                                     variant="h6"
                                     component="p"
@@ -230,7 +325,9 @@ const Contact = () => {
                                 color="white"
                                 onClick={gotoGithub}
                             >
-                                <GitHubIcon />
+                                <div className='icon' style={{ background: '#FF5436' }}>
+                                    <GitHubIcon />
+                                </div>
                                 <Typography
                                     variant="h6"
                                     component="p"
@@ -239,20 +336,6 @@ const Contact = () => {
                                     Visit my github account
                                 </Typography>
                             </Stack>
-                            <div className='map'>
-                                <MapContainer center={position} zoom={15} scrollWheelZoom={false}>
-                                    <TileLayer
-                                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                                        url="https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-                                    />
-                                    <Marker position={position}>
-                                        <Popup>
-                                            99 An Dương Vương <br />
-                                            Ward 16, District 8, Ho Chi Minh City
-                                        </Popup>
-                                    </Marker>
-                                </MapContainer>,
-                            </div>
                         </Stack>
                     </motion.div>
                 </Grid>
