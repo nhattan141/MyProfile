@@ -5,6 +5,7 @@ import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
 import EmailIcon from '@mui/icons-material/Email';
 import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import PlaceIcon from '@mui/icons-material/Place';
 import SendIcon from '@mui/icons-material/Send';
 
 import emailjs from '@emailjs/browser';
@@ -135,7 +136,7 @@ const Contact = () => {
                     // zIndex: '1000'
                 }}
             >
-                <Grid item md={8} xs={12} sx={{ height: '80vh' }}>
+                <Grid item md={7} xs={12} sx={{ height: '80vh' }}>
                     <motion.div
                         style={{
                             display: 'flex',
@@ -239,7 +240,7 @@ const Contact = () => {
                         </form>
                     </motion.div>
                 </Grid>
-                <Grid item md={4} xs={12}>
+                <Grid item md={5} xs={12}>
                     <motion.div
                         style={{
                             display: 'flex',
@@ -276,7 +277,7 @@ const Contact = () => {
                                     <LocalPhoneIcon />
                                 </div>
                                 <Typography
-                                    variant="h6"
+                                    variant="h7"
                                     component="p"
                                     sx={{ color: 'white' }}
                                 >
@@ -293,7 +294,7 @@ const Contact = () => {
                                     <EmailIcon />
                                 </div>
                                 <Typography
-                                    variant="h6"
+                                    variant="h7"
                                     component="p"
                                     sx={{ color: 'white' }}
                                 >
@@ -311,7 +312,7 @@ const Contact = () => {
                                     <FacebookIcon />
                                 </div>
                                 <Typography
-                                    variant="h6"
+                                    variant="h7"
                                     component="p"
                                     sx={{ color: 'white', cursor: 'pointer' }}
                                 >
@@ -329,11 +330,29 @@ const Contact = () => {
                                     <GitHubIcon />
                                 </div>
                                 <Typography
-                                    variant="h6"
+                                    variant="h7"
                                     component="p"
                                     sx={{ color: 'white', cursor: 'pointer' }}
                                 >
                                     Visit my github account
+                                </Typography>
+                            </Stack>
+                            <Stack
+                                direction="row"
+                                alignItems="center"
+                                spacing={2}
+                                color="white"
+                                onClick={gotoGithub}
+                            >
+                                <div className='icon' style={{ background: '#F1C40F' }}>
+                                    <PlaceIcon />
+                                </div>
+                                <Typography
+                                    variant="h7"
+                                    component="p"
+                                    sx={{ color: 'white' }}
+                                >
+                                    99 An Duong Vuong, Ward 16, District 8, HCM City
                                 </Typography>
                             </Stack>
                         </Stack>
